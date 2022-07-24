@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from projects.models import Project, Tag, Review
@@ -40,3 +41,13 @@ def update_project(request, pk):
     context = {'form' : form}
     return render(request, 'projects/project_form.html', context)
 
+
+def delete_project(request, pk):
+    project = Project.objects.get(id=pk)
+    if request.method == 'POST':
+        project.delete()
+        return redirect('projects')
+
+    context= {'project': project}
+
+    return render(request, 'projects/delete_project.html', context)

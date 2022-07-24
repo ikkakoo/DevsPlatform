@@ -5,8 +5,9 @@
         {% for project in projects %}
             <li>{{ project.title }} ---> {{ project.created }}</li>
             <p>{{ project.description }}</p>
-            <a href="{% url 'project' project.id %}">view</a>
+            <a href="{% url 'project' project.id %}">View</a>
             <a href="{% url 'update-project' project.id %}">Update</a>
+            <a href="{% url 'delete-project' project.id %}">Delete</a>
             <br>
             <br>
         {% endfor %}
