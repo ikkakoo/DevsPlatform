@@ -1,29 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from projects.models import Project, Tag, Review
-
-project_list = [
-    {
-        'id' : '1',
-        'title' : 'E-commerce Website',
-        'description' : 'Fully Functional E-commerce Website'
-    },
-    {
-        'id' : '2',
-        'title' : 'Portfolio Website',
-        'description' : 'My Portfolio Website'
-    },
-    {
-        'id' : '3',
-        'title' : 'Social Network',
-        'description' : 'Best Social Network Ever'
-    },
-    {
-        'id' : '4',
-        'title' : 'Travel Guide',
-        'description' : 'Find your Destinations Here'
-    },
-]
+from projects.forms import ProjectForm
 
 def projetcts(request):
     projects = Project.objects.all()
@@ -33,3 +11,18 @@ def projetcts(request):
 def project(request, pk):
     project_obj = Project.objects.get(id=pk)
     return render(request, 'projects/single-project.html', {'project' : project_obj}) 
+
+def create_project(request):
+    form = ProjectForm()
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')
+
+    context = {'form' : form}
+    return render(request, 'projects/project_form.html', context)
+
+
+
