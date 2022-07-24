@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from projects.models import Project, Tag, Review
 from projects.forms import ProjectForm
 
-def projetcts(request):
+def projects(request):
     projects = Project.objects.all()
     context = {'projects' : projects }
     return render(request, 'projects/projects.html', context)
