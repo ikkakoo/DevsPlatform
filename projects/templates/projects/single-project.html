@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<img style="max-width: 500px;" src="{{ project.featured_image.url }}" alt="">
+
 <h1>Project: {{ project.title }}</h1>
 
 <h2>{{ project.description }}</h2>
@@ -11,6 +13,6 @@
 {% endfor %}
 
 <p>{{ project.vote_total }}</p>
-<p>{{ project.vote_ratio }}</p>
+<p>{{ project.vote_ratio }}%</p>
 
 {% endblock content %}
