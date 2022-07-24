@@ -3,7 +3,12 @@
 <body>
     <ul>
         {% for project in projects %}
-            <li><a href="{% url 'project' project.id %}">{{ project.title }}</a> ---> {{ project.created }}</li>
+            <li>{{ project.title }} ---> {{ project.created }}</li>
+            <p>{{ project.description }}</p>
+            <a href="{% url 'project' project.id %}">view</a>
+            <a href="{% url 'update-project' project.id %}">Update</a>
+            <br>
+            <br>
         {% endfor %}
     </ul>
 </body>
